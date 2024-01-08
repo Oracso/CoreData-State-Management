@@ -11,7 +11,6 @@ import CoreData
 
 extension Item {
     
-    
     public var unwrappedID: UUID {
         id ?? UUID()
     }
@@ -38,25 +37,27 @@ extension Item {
 
 // MARK: - ObjectStore FetchRequest
 
-
 extension Item {
     
     public class func objectStoreFetchRequest() -> NSFetchRequest<Item> {
         let request = NSFetchRequest<Item>(entityName: "Item")
             request.sortDescriptors = [NSSortDescriptor(key: "<#property#>", ascending: true)]
+        
         return request
     }
+    
+    
+    
     
     
 }
 
 
 
-
 // MARK: - Coding Keys
 
 private enum CodingKeys : String, CodingKey {
-    case id, name, <#property#>, category
+    case id, name, <#property#>, <#attribute#>
 }
 
 
@@ -69,7 +70,7 @@ public func encode(to encoder: Encoder) throws {
 
     // try container.encode(<#property#>, forKey: .<#property#>)
     
-    // try container.encode(category?.id, forKey: .category)
+    // try container.encode(<#attribute#>Array.map({$0.id}), forKey: .<#attribute#>)
 }
 
 
@@ -91,7 +92,8 @@ public required convenience init(from decoder: Decoder) throws {
 
     // <#property#> = try container.decode(<#Type#>.self, forKey: .<#property#>)
     
-    // category = try container.decode(Category.self, forKey: .category)
+    // let <#attribute#>Array = try container.decode([<#Entity#>].self, forKey: .<#attribute#>)
+    // self.<#attribute#> = Set(<#attribute#>Array) as NSSet
     
     
     
@@ -103,38 +105,64 @@ extension Item: Codable { }
 
 
 
+
 // MARK: - RelationalEntity Conformance
 
 extension Item: RelationalEntity {
     
     typealias EntityRelationships = Relationships
  
-    enum Relationships: String, CaseIterable {
-        case category
+    enum Relationships: String, CaseIterable, CardinalRelationships {
+        case <#attribute#>
+
+        typealias ToOneRelationships = ToOne
+        
+        enum ToOne: CaseIterable {
+            
+        }
+        
+        typealias ToManyRelationships = ToMany
+        
+        enum ToMany: CaseIterable {
+
+        }
+
     }
     
     func returnRelationship(_ relationship: Relationships) -> ObjectOrNSSet {
         switch relationship {
-        // case .category:
-        //     return ObjectOrNSSet(object: category)
+            // return ObjectOrNSSet(object: <#attribute#>)
         }
     }
     
     func returnRelationshipEntityType(_ relationship: Relationships) -> EntityType {
         switch relationship {
-        // case .category:
-        //     return .category
+            // return .<#attribute#>
         }
     }
     
     func inverseRelationshipName(_ relationship: Relationships) -> String {
         switch relationship {
-        // case .category:
-        //     return "items"
+            // return "<#relationship#>"
         }
     }
     
 }
+
+// MARK: - ToManyEntity Conformance
+
+// extension Item: ToManyEntity {
+    
+//     typealias ToManyEnum = EntityRelationships.ToManyRelationships
+    
+//     func addToManyArray<T: NSManagedObject & RelationalEntity>(_ itemToAdd: T, _ relationship: ToManyEnum) {
+//         switch relationship {
+//             // self.addTo<#objects#>(itemToAdd.castedAs<#Entity#>())
+//         }
+//     }
+    
+// }
+
 
 
 // MARK: - ObjectPlaceholderCompatible Conformance

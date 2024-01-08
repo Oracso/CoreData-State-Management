@@ -31,7 +31,6 @@ extension Category {
     // public var <#attribute#>Array: [<#Entity#>] {
     //      <#attribute#>.unwrap(<#Entity#>.self)
     // }
-        
     
 }
 
@@ -58,7 +57,7 @@ extension Category {
 // MARK: - Coding Keys
 
 private enum CodingKeys : String, CodingKey {
-    case id, name, <#property#>, items
+    case id, name, <#property#>, <#attribute#>
 }
 
 
@@ -71,7 +70,7 @@ public func encode(to encoder: Encoder) throws {
 
     // try container.encode(<#property#>, forKey: .<#property#>)
     
-    // try container.encode(itemsArray.map({$0.id}), forKey: .items)
+    // try container.encode(<#attribute#>Array.map({$0.id}), forKey: .<#attribute#>)
 }
 
 
@@ -93,8 +92,8 @@ public required convenience init(from decoder: Decoder) throws {
 
     // <#property#> = try container.decode(<#Type#>.self, forKey: .<#property#>)
     
-    // let itemsArray = try container.decode([Item].self, forKey: .items)
-    // self.items = Set(itemsArray) as NSSet
+    // let <#attribute#>Array = try container.decode([<#Entity#>].self, forKey: .<#attribute#>)
+    // self.<#attribute#> = Set(<#attribute#>Array) as NSSet
     
     
     
@@ -113,32 +112,57 @@ extension Category: RelationalEntity {
     
     typealias EntityRelationships = Relationships
  
-    enum Relationships: String, CaseIterable {
-        case items
+    enum Relationships: String, CaseIterable, CardinalRelationships {
+        case <#attribute#>
+
+        typealias ToOneRelationships = ToOne
+        
+        enum ToOne: CaseIterable {
+            
+        }
+        
+        typealias ToManyRelationships = ToMany
+        
+        enum ToMany: CaseIterable {
+
+        }
+
     }
     
     func returnRelationship(_ relationship: Relationships) -> ObjectOrNSSet {
         switch relationship {
-        // case .items:
-        //     return ObjectOrNSSet(object: items)
+            // return ObjectOrNSSet(object: <#attribute#>)
         }
     }
     
     func returnRelationshipEntityType(_ relationship: Relationships) -> EntityType {
         switch relationship {
-        // case .items:
-        //     return .items
+            // return .<#attribute#>
         }
     }
     
     func inverseRelationshipName(_ relationship: Relationships) -> String {
         switch relationship {
-        // case .items:
-        //     return "category"
+            // return "<#relationship#>"
         }
     }
     
 }
+
+// MARK: - ToManyEntity Conformance
+
+// extension Category: ToManyEntity {
+    
+//     typealias ToManyEnum = EntityRelationships.ToManyRelationships
+    
+//     func addToManyArray<T: NSManagedObject & RelationalEntity>(_ itemToAdd: T, _ relationship: ToManyEnum) {
+//         switch relationship {
+//             // self.addTo<#objects#>(itemToAdd.castedAs<#Entity#>())
+//         }
+//     }
+    
+// }
+
 
 
 // MARK: - ObjectPlaceholderCompatible Conformance
