@@ -3,21 +3,12 @@ An example SwiftUI project using CoreData to manage object data over time
 
 
 
-
-![Alt text](PreviewResources/Screenshot 2.png)
-
+![Screenshot 1](PreviewResources/Screenshot1.png)
 
 
-![Alt text](screenshot 2.png)
+<img src="PreviewResources/Screenshot1.png" width="50">
 
 
-https://github.com/Oracso/CoreData-State-Management/blob/main/PreviewResources/Screenshot%201.png
+img
 
-![Alt text](PreviewResources/Screenshot%201.png?raw=true)
-
-
-![title](Images/example.png)
-
-
-
-![Screenshot 1]()
+Embe
