@@ -3,12 +3,9 @@ An example SwiftUI project using CoreData to manage object data over time
 
 
 
-![Screenshot 1](PreviewResources/Screenshot1.png)
 
+<img src="PreviewResources/Screenshot1.png" width="200">
+<img src="PreviewResources/Screenshot2.png" width="200">
+<img src="PreviewResources/Screenshot3.png" width="200">
 
-<img src="PreviewResources/Screenshot1.png" width="50">
-
-
-img
-
-Embe
+<video src="PreviewResources/ScreenRecording1.mp4" width="200">
