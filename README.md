@@ -1,5 +1,5 @@
 # CoreData-State-Management
-An example SwiftUI project using CoreData to manage object data over time.
+An example SwiftUI project using CoreData to manage dynamic object data over time.
 
 
 
