@@ -3,9 +3,6 @@ An example SwiftUI project using CoreData to manage dynamic object data over tim
 
 
 
-
-
-<br>
 <p align="center">
 
   <img src="PreviewResources/Screenshot1.png" width="230"  title="All Categories">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
