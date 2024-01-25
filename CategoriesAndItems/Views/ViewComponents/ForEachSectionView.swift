@@ -36,13 +36,15 @@ struct ForEachSectionView<T: NSManagedObject & RelationalEntity, U: RawRepresent
         
         
         Section {
-            ForEach(selectedObjects.unwrap(objectsEntityType)) { childObject in
+            ForEach(selectedObjects.unwrap(objectsEntityType).sorted(by: {$0.customUUID < $1.customUUID})) { childObject in
                 NavigationLink {
                     XDetailView(childObject)
                 } label: {
                     GenericViewManager.objectListRowView(childObject)
                 }
-//                    .disabled(vem.isEditing)
+                    .disabled(vem.isEditing)
+                
+                
             }
         } header: {
             HStack {

@@ -29,12 +29,11 @@ struct NumberTextFieldView<T: Numeric>: View {
             .focused($isFocused)
         
             .onChange(of: localString) {
-                number = T(integerLiteral: localString as! T.IntegerLiteralType) 
+                number = T(integerLiteral: localString as! T.IntegerLiteralType)
             }
         
         
         // MARK: Dismiss Keyboard
-        
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     HStack {
@@ -50,7 +49,6 @@ struct NumberTextFieldView<T: Numeric>: View {
             .onAppear() {
                 UIApplication.shared.addTapGestureRecogniser()
             }
-        
         
     }
 }
@@ -76,6 +74,6 @@ extension UIApplication {
 
 extension UIApplication: UIGestureRecognizerDelegate {
     public func gestureRecogniser(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true // set to `false` if you don't want to detect tap during other gestures
+        return true
     }
 }

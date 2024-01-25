@@ -14,23 +14,17 @@ extension Item {
     public var unwrappedID: UUID {
         id ?? UUID()
     }
-
-    // public var unwrappedName: String {
-    //     name ?? "name found nil"
-    // }
     
-
-    // public var unwrappedDate: Date {
-    //     date ?? .now
-    // }
-
-    public var unwrapped<#property#>: <#Type#> {
-        <#property#> ?? <#example#>
+    public var unwrappedName: String {
+        name ?? "name found nil"
     }
     
-    // public var <#attribute#>Array: [<#Entity#>] {
-    //      <#attribute#>.unwrap(<#Entity#>.self)
-    // }
+    
+    public var unwrappedDate: Date {
+        date ?? .now
+    }
+    
+    
     
 }
 
@@ -41,7 +35,7 @@ extension Item {
     
     public class func objectStoreFetchRequest() -> NSFetchRequest<Item> {
         let request = NSFetchRequest<Item>(entityName: "Item")
-            request.sortDescriptors = [NSSortDescriptor(key: "<#property#>", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
         return request
     }
@@ -54,55 +48,6 @@ extension Item {
 
 
 
-// MARK: - Coding Keys
-
-private enum CodingKeys : String, CodingKey {
-    case id, name, <#property#>, <#attribute#>
-}
-
-
-// MARK: - Encodable
-
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(id, forKey: .id)
-    try container.encode(name, forKey: .name)
-
-    // try container.encode(<#property#>, forKey: .<#property#>)
-    
-    // try container.encode(<#attribute#>Array.map({$0.id}), forKey: .<#attribute#>)
-}
-
-
-// MARK: - Decodable
-
-
-public required convenience init(from decoder: Decoder) throws {
-    
-    
-    guard let contextUserInfoKey = CodingUserInfoKey.context,
-          let managedObjectContext = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
-          let entity = NSEntityDescription.entity(forEntityName: "Item", in: managedObjectContext) else {  fatalError("Failed to decode Item!")  }
-    
-    self.init(entity: entity, insertInto: managedObjectContext)
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    
-    id = try container.decode(UUID.self, forKey: .id)
-    name = try container.decode(String.self, forKey: .name)
-
-    // <#property#> = try container.decode(<#Type#>.self, forKey: .<#property#>)
-    
-    // let <#attribute#>Array = try container.decode([<#Entity#>].self, forKey: .<#attribute#>)
-    // self.<#attribute#> = Set(<#attribute#>Array) as NSSet
-    
-    
-    
-}
-
-
-extension Item: Codable { }
-
-
 
 
 
@@ -111,39 +56,54 @@ extension Item: Codable { }
 extension Item: RelationalEntity {
     
     typealias EntityRelationships = Relationships
- 
+    
     enum Relationships: String, CaseIterable, CardinalRelationships {
-        case <#attribute#>
-
+        case category, categoryTags, mainCategory
+        
         typealias ToOneRelationships = ToOne
         
         enum ToOne: CaseIterable {
-            
+            case category, mainCategory
         }
         
         typealias ToManyRelationships = ToMany
         
         enum ToMany: CaseIterable {
-
+            case categoryTags
         }
-
+        
     }
     
     func returnRelationship(_ relationship: Relationships) -> ObjectOrNSSet {
         switch relationship {
-            // return ObjectOrNSSet(object: <#attribute#>)
+        case .category:
+            return ObjectOrNSSet(object: category)
+        case .categoryTags:
+            return ObjectOrNSSet(nSSet: categoryTags)
+        case .mainCategory:
+            return ObjectOrNSSet(object: mainCategory)
         }
     }
     
     func returnRelationshipEntityType(_ relationship: Relationships) -> EntityType {
         switch relationship {
-            // return .<#attribute#>
+        case .category:
+            return .category
+        case .categoryTags:
+            return .category
+        case .mainCategory:
+            return .category
         }
     }
     
     func inverseRelationshipName(_ relationship: Relationships) -> String {
         switch relationship {
-            // return "<#relationship#>"
+        case .category:
+            return "items"
+        case .categoryTags:
+            return "itemTags"
+        case .mainCategory:
+            return "mainItem"
         }
     }
     
@@ -151,17 +111,18 @@ extension Item: RelationalEntity {
 
 // MARK: - ToManyEntity Conformance
 
-// extension Item: ToManyEntity {
-    
-//     typealias ToManyEnum = EntityRelationships.ToManyRelationships
-    
-//     func addToManyArray<T: NSManagedObject & RelationalEntity>(_ itemToAdd: T, _ relationship: ToManyEnum) {
-//         switch relationship {
-//             // self.addTo<#objects#>(itemToAdd.castedAs<#Entity#>())
-//         }
-//     }
-    
-// }
+ extension Item: ToManyEntity {
+
+     typealias ToManyEnum = EntityRelationships.ToManyRelationships
+
+     func addToManyArray<T: NSManagedObject & RelationalEntity>(_ itemToAdd: T, _ relationship: ToManyEnum) {
+         switch relationship {
+         case .categoryTags:
+             self.addToCategoryTags(itemToAdd.castedAsCategory())
+         }
+     }
+
+ }
 
 
 
@@ -169,9 +130,9 @@ extension Item: RelationalEntity {
 
 extension Item: ObjectPlaceholderCompatible {
     
-    var placeholderObjectName: String { unwrapped<#property#> }
+    var placeholderObjectName: String { unwrappedName }
     
-    var placeholderEntityType: EntityType { .<#entityType#> }
+    var placeholderEntityType: EntityType { .item }
     
 }
 

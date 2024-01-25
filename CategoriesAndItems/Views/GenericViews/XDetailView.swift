@@ -8,20 +8,16 @@
 import SwiftUI
 import CoreData
 
-
 struct XDetailView: View {
-    
     
     init(_ object: NSManagedObject, _ editable: Bool = false) {
         self.object = object
         self.editable = editable
     }
-
-
+    
     @ObservedObject var object: NSManagedObject
     
     let gvm = GenericViewManager()
-    
     
     // MARK: - If view is editable
     
@@ -30,7 +26,7 @@ struct XDetailView: View {
     @EnvironmentObject var ads: AppDataStore
     
     @EnvironmentObject var vem: ViewEditingManager
-
+    
     var saveButton: CustomButton { CustomButton(.save, OptionalFunc(saveFunc)) }
     var cancelButton: CustomButton { CustomButton(.cancel, OptionalFunc(cancelFunc)) }
     
@@ -50,21 +46,15 @@ struct XDetailView: View {
     func discardFunc() {
         vem.discardChanges()
     }
-
-
-
     
     var body: some View {
-
-
+        
         if editable {
             gvm.objectDetailView(object)
                 .standardGenericEditViewModifiers(vem, saveButton, cancelButton, OptionalFunc(discardFunc))
         } else {
             gvm.objectDetailView(object)
         }
-        
-        
         
     }
 }
@@ -84,4 +74,4 @@ struct XDetailView: View {
 
 
 
-    
+

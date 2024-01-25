@@ -11,20 +11,16 @@ struct SettingsView: View {
     
     var body: some View {
         
-        
         List {
             
             NavigationLink("Download Data") {
                 DataDownloadView()
             }
             
-            
-            
         }
         
         .navigationTitle("Settings")
       
-        
     }
 }
 

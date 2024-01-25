@@ -17,7 +17,7 @@ public class Category: NSManagedObject {
     // MARK: - Coding Keys
     
     private enum CodingKeys : String, CodingKey {
-        case id, name, date, details, items, itemTags, mainItem
+        case id, name, date, details, value, items, itemTags, mainItem
     }
     
     
@@ -29,6 +29,7 @@ public class Category: NSManagedObject {
         try container.encode(name, forKey: .name)
         try container.encode(date, forKey: .date)
         try container.encode(details, forKey: .details)
+        try container.encode(value, forKey: .value)
         
         try container.encode(items.unwrap(Item.self).map({$0.id}), forKey: .name)
         try container.encode(itemTags.unwrap(Item.self).map({$0.id}), forKey: .name)
@@ -55,6 +56,7 @@ public class Category: NSManagedObject {
         name = try container.decode(String.self, forKey: .name)
         date = try container.decode(Date.self, forKey: .date)
         details = try container.decode(String.self, forKey: .details)
+        value = try container.decode(Int64.self, forKey: .value)
         
         let decodedItems = try container.decode([Item].self, forKey: .items)
         items = Set(decodedItems) as NSSet

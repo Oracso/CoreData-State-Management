@@ -15,21 +15,17 @@ class ViewEditingManager: ObservableObject {
         self.context = context
     }
     
-    
     let context: NSManagedObjectContext
     
     @Published var editMode: EditMode = .inactive
-    
 
     // MARK: - Save/Discard Context
-    
     
     @Published var cancelChanges = false
     
     func discardChanges() {
-        context.rollback()
+        context.undo()
         inactiveEditMode()
-        //        activeEditMode()
     }
     
     func saveChanges() {
@@ -47,7 +43,6 @@ class ViewEditingManager: ObservableObject {
         saveChanges()
     }
     
-    
     // MARK: - View UI
     
     @Published var backButton: Bool = false
@@ -62,6 +57,10 @@ class ViewEditingManager: ObservableObject {
         }
     }
     
+    // MARK: - Check Object Can Save
+    
+    @Published var cantSave: Bool = false
+    
     
     // MARK: - Change EditMode
     
@@ -69,17 +68,17 @@ class ViewEditingManager: ObservableObject {
 
     func activeEditMode() {
         editMode = .active
+        isEditing = true
     }
     
     func inactiveEditMode() {
         editMode = .inactive
+        isEditing = false
     }
     
      
     // MARK: - Child Context
     
-    
     var object: NSManagedObject?
-    
     
 }

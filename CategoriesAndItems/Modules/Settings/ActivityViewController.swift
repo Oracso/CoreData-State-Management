@@ -18,13 +18,11 @@ struct ActivityViewController: UIViewControllerRepresentable {
         let activityView = UIActivityViewController(activityItems: [], applicationActivities: nil)
         return activityView
         
-        
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         
     }
-    
     
     func initView() {
 
@@ -33,11 +31,6 @@ struct ActivityViewController: UIViewControllerRepresentable {
         UIApplication.shared.currentUIWindow()?.rootViewController?.present(avc, animated: true, completion: nil)
         
     }
-    
-   
- 
-    
-    
     
     
 }

@@ -18,7 +18,6 @@ struct CoreDataModifier {
     }
     
     
-    
     // MARK: - Create Entity
     
     func createEntity(_ entityType: EntityType) -> NSManagedObject {
@@ -31,28 +30,26 @@ struct CoreDataModifier {
     }
     
     
-    func createCategory() -> Category {
+    func createCategory(name: String = "", date: Date = .now, details: String? = nil, value: Int64 = 0) -> Category {
         let example = Category(context: context)
         example.id = UUID()
+        example.name = name
+        example.date = date
+        example.details = details
+        example.value = value
         return example
     }
     
     
-    func createItem() -> Item {
+    func createItem(name: String = "", date: Date = .now, details: String? = nil, value: Int64 = 0) -> Item {
         let example = Item(context: context)
         example.id = UUID()
+        example.name = name
+        example.date = date
+        example.details = details
+        example.value = value
         return example
     }
-    
-
-
-
-    // MARK: - Delete Entity
-    
-    // func deleteObject(object: NSManagedObject) {
-    //     context.delete(object)
-    // }
-    
     
     
 }

@@ -17,70 +17,58 @@ struct CategoryDetailView: View {
     
     @EnvironmentObject var vem: ViewEditingManager
     
-    
-    // MARK: Delete Object
     @Environment(\.dismiss) private var dismiss
 
-
     var body: some View {
-        
         
         List {
             
             // MARK: Name
-            // if vem.editMode == .inactive {
-            //     Text(category.unwrappedName.capitalized)
-            // } else {
-            //     TextField("Name", text: $category.name.defaultValue(""))
-            // }
+             if vem.editMode == .inactive {
+                 Text(category.unwrappedName.capitalized)
+             } else {
+                 TextField("Name", text: $category.name.defaultValue(""))
+             }
 
             // MARK: Date
-            // if vem.editMode == .inactive {
-            //     Text(category.unwrappedDate.formatted(date: .abbreviated, time: .shortened))
-            // } else {
-            //     DatePicker("Date", selection: $category.date.defaultValue(.now), displayedComponents: [.date, .hourAndMinute])
-            // }
+             if vem.editMode == .inactive {
+                 Text(category.unwrappedDate.formatted(date: .abbreviated, time: .shortened))
+             } else {
+                 DatePicker("Date", selection: $category.date.defaultValue(.now), displayedComponents: [.date, .hourAndMinute])
+             }
 
-
-            // MARK: Numeric
-            // if vem.editMode == .inactive {
-            //     Text(String(category.unwrapped<#property#>))
-            // } else {
-            //     NumberTextFieldView($category.<#property#>)
-            // }
-
-            
-            // MARK: Empty String
-            // if vem.editMode == .inactive {
-            //     Text(category.unwrapped<#property#>.capitalized)
-            // } else {
-            //     TextField("<#property#>", text: $category.<#property#>.defaultValue(""))
-            // }
-
-            // MARK: Notes
-            // TODO: Need to decide how I manage optional notes
-            // if vem.editMode == .inactive {
-            //     if let notes = category.notes {
-            //         Text(notes)
-            //     }
-            // } else {
-            //     TextField("Notes", text: $category.notes.defaultValue(""))
-            // }
-
-
-            // MARK: To-One Picker
-            // PickerSectionView(sectionTitle: "<#property#>", selectedObject: $category.<#property#>, selectedObjectEntityType: .<#property#>)
+            // MARK: Details
+             if vem.editMode == .inactive {
+                 if let details = category.details {
+                     Text(details)
+                 }
+             } else {
+                 TextField("Details", text: $category.details.defaultValue(""))
+             }
 
 
             // MARK: To-Many List
-            // ForEachSectionView(
-            //     sectionTitle: "<#property#>",
-            //     parentObject: category,
-            //     selectedObjects: $category.<#property#>,
-            //     selectedObjectsEntityType: .<#property#>,
-            //     toManyFilterType: .<#type#>,
-            //     relationshipName: .<#property#>
-            // )
+             ForEachSectionView(
+                 sectionTitle: "Items",
+                 parentObject: category,
+                 selectedObjects: $category.items,
+                 selectedObjectsEntityType: .item,
+                 toManyFilterType: .oneToMany,
+                 relationshipName: .items
+             )
+            
+            // MARK: To-Many List
+             ForEachSectionView(
+                 sectionTitle: "Item Tags",
+                 parentObject: category,
+                 selectedObjects: $category.itemTags,
+                 selectedObjectsEntityType: .item,
+                 toManyFilterType: .manyToMany,
+                 relationshipName: .itemTags
+             )
+            
+            // MARK: To-One Picker
+             PickerSectionView(sectionTitle: "Main Item", selectedObject: $category.mainItem, selectedObjectEntityType: .item)
             
 
               // MARK: Delete Object 
@@ -91,9 +79,6 @@ struct CategoryDetailView: View {
 
             
         }
-        
-        .navigationTitle(category.unwrapped<#property#>.capitalized)
-
         
 
     }

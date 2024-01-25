@@ -18,7 +18,6 @@ struct CustomButton: View {
 }
 
 extension CustomButton {
-    // TODO: Change to (): Void
     init(_ text: String, _ optionalFunc: OptionalFunc) {
         self.text = text
         self.optionalFunc = optionalFunc
@@ -34,6 +33,5 @@ extension CustomButton {
         case cancel = "Cancel"
         case edit = "Edit"
     }
-    
     
 }

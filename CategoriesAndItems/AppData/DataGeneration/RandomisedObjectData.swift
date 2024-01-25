@@ -8,19 +8,7 @@
 import Foundation
 import CoreLocation
 
-
-// TODO: Issue is I won't need most of this, and what performance impact does that bring ?
-
-// MARK: This struct is supposed to be edited and changed, with things commented out etc. When something is added though, it should be added back to the main doc for use elsewhere
-
-// TODO: Maybe small properties and just propertyBetween
-
-// TODO: How to create not so random randomised data? e.g. for weight tracking, how to do the trend? Do func that generally increases/decreased in total or for periods of time, with variations of x each period
-
 struct RandomisedObjectData {
-    
-    // TODO: Have inputable name then an objectIndexedName
-    // e.g Purple / Colour 1
     
     let index: Int
     
@@ -85,9 +73,6 @@ struct RandomisedObjectData {
     var uuid: UUID = UUID()
     var uuidArray: [UUID] { randomArray({UUID()}, 5) }
     
-    
-    // TODO: Need to find some way of including in the index into the calculations
-    // - e.g. Date.daysBack(index)
     init(name: String, index: Int) {
         self.name = name
         self.index = index
@@ -96,64 +81,11 @@ struct RandomisedObjectData {
     
 }
 
-
-// TODO: Rename to nilProperty
-
-
-
-
-// TODO: Can have funcs that are more tailored - e.g can change the range, or set coordinates to random but inside London
-   
-
 extension RandomisedObjectData {
     
     
     
     // MARK: String
-    
-    // TODO: This doesn't work..
-    // TODO: Need to test & tidy this whole thing
-    func randomStringFromDictionary(_ stringType: StringType) -> String {
-        
-        let finalString: String
-        
-        if let wordsFilePath = Bundle.main.path(forResource: "web2", ofType: nil) {
-            do {
-                
-                switch stringType {
-                case .wordsString:
-                    let wordsString = try String(contentsOfFile: wordsFilePath)
-                    finalString = wordsString
-                case .wordLines:
-                    let wordsString = try String(contentsOfFile: wordsFilePath)
-                    let wordLines = wordsString.components(separatedBy: .newlines)
-                    // TODO: This shouldn't be joined...
-                    finalString = wordLines.joined(separator: " --- ")
-                case .randomLine:
-                    let wordsString = try String(contentsOfFile: wordsFilePath)
-                    let wordLines = wordsString.components(separatedBy: .newlines)
-                    let randomLine = wordLines[numericCast(arc4random_uniform(numericCast(wordLines.count)))]
-                    finalString = randomLine
-                }
-
-            } catch { // contentsOfFile throws an error
-                print("Error: \(error)")
-                finalString = "No string returned from dictionary"
-            }
-        } else {
-            finalString = "Could not find bundle for resource 'web2'"
-        }
-        
-        
-        return finalString
-        
-        
-    }
- 
-    // TODO: Can I find way to store this within the randomStringFromDictionary() ?
-    enum StringType {
-        case wordsString, wordLines, randomLine
-    }
     
     func objectString() -> String {
         "I am a string about \(name), I have lots of interesting information about this thing, like \(int) and \(date.formatted())"
@@ -206,11 +138,8 @@ extension RandomisedObjectData {
     }
     
     
-    
     // MARK: Float
     
-    
-    // TODO: Need to test this
     func randomFloat() -> Float {
         let intOne = Float(randomInt())
         let intTwo = Float(randomInt())
@@ -224,8 +153,6 @@ extension RandomisedObjectData {
     func randomFloatBetween(_ lower: Float, _ upper: Float) -> Float {
         Float.random(in: lower...upper)
     }
-    
-    
     
     
     // MARK: Coordinates
@@ -246,8 +173,6 @@ extension RandomisedObjectData {
     // MARK: Date
     
     
-    
-    // TODO: Need to test this
     func randomDateBetween(_ lower: Date = Date.distantPast, _ upper: Date = Date.distantFuture) -> Date {
         var date1 = lower
         var date2 = upper
@@ -272,16 +197,6 @@ extension RandomisedObjectData {
         }
         return array
     }
-    
-//    Numeric ????
-//    RandomNumberGenerator
-//    Comparable
-//    FixedWidthInteger
-//    BinaryFloatingPoint
-//    func randomBetween<T: FixedWidthInteger>(_ lower: T, _ upper: T) -> T {
-//        T.random(in: lower...upper)
-//    }
-    
     
     
 }

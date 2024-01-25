@@ -11,10 +11,7 @@ import CoreData
 
 struct CoreDataFetcher {
     
-    
-    
     let context: NSManagedObjectContext
-    
     
     init(_ context: NSManagedObjectContext) {
         self.context = context
@@ -24,8 +21,7 @@ struct CoreDataFetcher {
     // MARK: - Generic Fetch Requests
     
     
-    // MARK: - Multiple Fetch Requests
-    
+    // MARK: Multiple Fetch Requests
     
     func fetchAllObjects<T: NSManagedObject>(_ entityType: EntityType) -> [T] {
         fetchAllObjectsFromEntityClass(entityType.entityClass()) as! [T]
@@ -36,24 +32,19 @@ struct CoreDataFetcher {
         entityClass.customObjectsFetchRequest(.all, context: context)
     }
     
-    
-    // MARK: - Single Fetch Requests
+    // MARK: Single Fetch Requests
     
     
     func fetchObject(_ entityType: EntityType) -> NSManagedObject? {
         fetchObjectFromEntityClass(entityType.entityClass())
     }
     
-    
     private func fetchObjectFromEntityClass(_ entityClass: NSManagedObject.Type) -> NSManagedObject? {
         entityClass.singleObjectFetchRequest(context: context)
     }
 
 
-
-
     // MARK: - CustomUUID Fetch Requests
-    // Does this invalidate seperating CoreData logic? This is currently used for childContext fetches
     
     func returnAllObjectsFromAllCustomUUIDs(_ customUUIDs: [String]) -> [NSManagedObject] {
         var array: [NSManagedObject] = []

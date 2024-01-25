@@ -53,7 +53,6 @@ extension AppDataStore {
 
 
 
-
 // MARK: - CustomUUID Functionality
 
 extension AppDataStore {
@@ -75,7 +74,7 @@ extension AppDataStore {
 }
 
 
-// MARK: - Check Object Can Save Conditions
+// MARK: - Check Object Can Save
  
 extension AppDataStore {
     
@@ -90,11 +89,11 @@ extension AppDataStore {
     }
     
     private func checkCanSaveCategory(_ object: Category) -> Bool {
-        objects.categoryOS.categories.contains(where: { $0.<#property#> == object.<#property#> })
+        objects.categoryOS.categories.contains(where: { $0.name?.lowercased() == object.name?.lowercased() })
     }
     
-    private func checkCanSaveItem(_ object: WordDefinition) -> Item {
-        objects.itemOS.items.contains(where: { $0.<#property#> == object.<#property#> })
+    private func checkCanSaveItem(_ object: Item) -> Bool {
+        objects.itemOS.items.contains(where: { $0.name?.lowercased() == object.name?.lowercased() })
     }
     
     

@@ -9,7 +9,6 @@ import Foundation
 
 class ObjectPlaceholderDetailsContainer: ObservableObject {
     
-    
     init(_ parentCustomUUID: String , _ toManyFilterType: ToManyFilterType) {
         
         self.parentCustomUUID = parentCustomUUID
@@ -17,15 +16,11 @@ class ObjectPlaceholderDetailsContainer: ObservableObject {
         
     }
     
-    
     let odpm = ObjectPlaceholderDetailsManager()
     
     let parentCustomUUID: String
     
     let toManyFilterType: ToManyFilterType
-    
-    
-    
     
     func loadContainer( _ objects: [NSManagedObject], _ relationshipName: String) {
         
@@ -51,9 +46,7 @@ class ObjectPlaceholderDetailsContainer: ObservableObject {
     
     // MARK: For ManyToMany
     
-    
     @Published var allObjectPlaceholderDetailsToggles: [ObjectPlaceholderDetailsToggle] = []
-    
     
 }
 
@@ -74,11 +67,9 @@ extension ObjectPlaceholderDetailsContainer {
     
     // MARK: For ManyToMany
     
-    
     func loadPlaceholderToggles( _ placeholderDetails: [ObjectPlaceholderDetails], _ relationshipName: String) {
         allObjectPlaceholderDetailsToggles = createAllObjectPlaceholderDetailsToggle(placeholderDetails, relationshipName)
     }
-    
     
 }
 
@@ -89,7 +80,6 @@ extension ObjectPlaceholderDetailsContainer {
     
     func createObjectPlaceholderDetailsToggle(_ placeholderDetails: ObjectPlaceholderDetails,  _ relationshipName: String) -> ObjectPlaceholderDetailsToggle {
         var selected: Bool {
-            //            placeholderDetails.checkForToManyRelationship(parentCustomUUID, relationshipName)
             placeholderDetails.checkForAnyRelationship(parentCustomUUID, relationshipName)
         }
         return ObjectPlaceholderDetailsToggle(toggle: selected, placeholderDetails: placeholderDetails)

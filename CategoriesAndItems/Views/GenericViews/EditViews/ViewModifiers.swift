@@ -9,18 +9,13 @@ import Foundation
 import SwiftUI
 import CoreData
 
-
-
-// MARK: - GENERIC !!!
+// MARK: - GENERIC
 
 extension View {
-    
     func standardGenericEditViewModifiers(_ vem: ViewEditingManager, _ saveButton: CustomButton, _ cancelButton: CustomButton, _ df: OptionalFunc = .blank) -> some View {
         modifier(StandardGenericEditViewModifiers(vem: vem, saveButton: saveButton, cancelButton: cancelButton, df: df))
     }
-    
 }
-
 
 
 struct StandardGenericEditViewModifiers: ViewModifier {
@@ -41,7 +36,6 @@ struct StandardGenericEditViewModifiers: ViewModifier {
         
             .genericDiscardChangesAlert(vem, df)
         
-        
     }
     
 }
@@ -50,11 +44,9 @@ struct StandardGenericEditViewModifiers: ViewModifier {
 // MARK: GenericEditToolBar
 
 extension View {
-    
     fileprivate func genericEditToolbar(_ vem: ViewEditingManager, _ saveButton: CustomButton, _ cancelButton: CustomButton) -> some View {
         modifier(GenericEditToolBar(vem: vem, saveButton: saveButton, cancelButton: cancelButton))
     }
-    
 }
 
 
@@ -86,25 +78,16 @@ struct GenericEditToolBar: ViewModifier {
                     }
                 }
                 
-                
-                
             }
-        
-        
     }
-    
 }
-
 
 
 extension View {
-    
     fileprivate func genericDiscardChangesAlert(_ vem: ViewEditingManager, _ df: OptionalFunc = .blank) -> some View {
         modifier(GenericDiscardChangesAlert(vem: vem, df: df))
     }
-    
 }
-
 
 
 struct GenericDiscardChangesAlert: ViewModifier {
@@ -120,8 +103,6 @@ struct GenericDiscardChangesAlert: ViewModifier {
             } message: {
                 Text("Are you sure you want to discard your recent changes? ")
             }
-        
-        
     }
     
 }
@@ -132,12 +113,9 @@ struct GenericDiscardChangesAlert: ViewModifier {
 // MARK: - If Editing Navigation Back Button
 
 extension View {
-    //    fileprivate
     func ifEditBackButton(_ vem: ViewEditingManager) -> some View {
         modifier(IfEditBackButton(vem: vem))
-        
     }
-    
 }
 
 
@@ -160,14 +138,10 @@ struct IfEditBackButton: ViewModifier {
 // MARK: - Discard Changes Alert
 
 extension View {
-    
     fileprivate func discardChangesAlert(_ vem: ViewEditingManager, _ of: OptionalFunc = .blank) -> some View {
         modifier(DiscardChangesAlert(vem: vem, of: of))
-        
     }
-    
 }
-
 
 
 struct DiscardChangesAlert: ViewModifier {
@@ -185,7 +159,6 @@ struct DiscardChangesAlert: ViewModifier {
                 Text("Are you sure you want to discard your recent changes? ")
             }
         
-        
     }
     
 }
@@ -196,11 +169,9 @@ struct DiscardChangesAlert: ViewModifier {
 // MARK: - Delete Object Alert
 
 extension View {
-    
     func deleteObjectAlert(_ object: NSManagedObject , _ vem: ViewEditingManager, _ ads: AppDataStore, _ dismissView: DismissAction? = nil) -> some View {
         modifier(DeleteObjectAlert(object: object, vem: vem, ads: ads, dismissView: dismissView))
     }
-    
 }
 
 
@@ -273,5 +244,28 @@ struct GenericDeleteObjectButton: View {
             
         }
         
+    }
+}
+
+
+
+// MARK: - Unable To Save Object
+
+extension View {
+    func unableToSaveObject(_ vem: ViewEditingManager) -> some View {
+        modifier(UnableToSaveObject(vem: vem))
+    }
+}
+
+
+struct UnableToSaveObject: ViewModifier {
+    @ObservedObject var vem: ViewEditingManager
+    func body(content: Content) -> some View {
+        content
+            .alert("Cannot Save Object", isPresented: $vem.cantSave) {
+                Button("Ok", role: .cancel) { }
+            } message: {
+                Text("Cannot save as conflicts with other object")
+            }
     }
 }

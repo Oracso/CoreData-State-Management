@@ -10,25 +10,12 @@ import Foundation
 struct ObjectPlaceholderDetailsManager {
     
     
-    
     // MARK: - Return PlaceholderDetails from AppDataStore
     
     func returnPlaceholderDetails(_ ads: AppDataStore, _ entityType: EntityType) -> [ObjectPlaceholderDetails] {
-        
-        // var objects: [NSManagedObject]
-        
-        // switch entityType {
-        // case .category:
-        //     objects = ads.allObjects(.category)
-        // case .item:
-        //     objects = ads.allObjects(.item)
-        // }
         let objects = ads.allObjects(entityType)
         return createAllEntityObjectPlaceholderDetails(objects)
-        
     }
-    
-    
     
     
     // MARK: - Create PlaceholderDetails
@@ -64,49 +51,6 @@ struct ObjectPlaceholderDetailsManager {
             toManyRelationships: relationshipUUIDs.toMany
             )
     }
-
-
-    // func createObjectPlaceholderDetails(_ object: NSManagedObject, _ entityType: EntityType) -> ObjectPlaceholderDetails {
-        
-    //     switch entityType {
-    //     case .category:
-    //         return createCategoryPlaceholderDetails(object.castedAsCategory())
-    //     case .item:
-    //         return createItemPlaceholderDetails(object.castedAsItem())
-    //     }
-        
-    // }
-    
-   
-    
-    
-    
-    // MARK: - Specific PlaceholderDetails Init()
-
-    // let erm = EntityRelationshipManager()
-    
-    // private func createCategoryPlaceholderDetails(_ object: Category) -> ObjectPlaceholderDetails {
-    //     let relationshipUUIDs = erm.createRelationshipUUIDs(object)
-    //     return ObjectPlaceholderDetails(
-    //         objectName: object.unwrappedName, 
-    //         customUUID: object.customUUID, 
-    //         entityType: .category, 
-    //         toOneRelationships: relationshipUUIDs.toOne,
-    //         toManyRelationships: relationshipUUIDs.toMany
-    //         )
-    // }
-    
-    // private func createItemPlaceholderDetails(_ object: Item) -> ObjectPlaceholderDetails {
-    //     let relationshipUUIDs = erm.createRelationshipUUIDs(object)
-    //     return ObjectPlaceholderDetails(
-    //         objectName: object.unwrappedName, 
-    //         customUUID: object.customUUID, 
-    //         entityType: .item, 
-    //         toOneRelationships: relationshipUUIDs.toOne,
-    //         toManyRelationships: relationshipUUIDs.toMany
-    //         )
-    // }
-    
     
     
     // MARK: - Filter PlaceholderDetails by Selected/Unassigned/Assigned CustomUUIDs

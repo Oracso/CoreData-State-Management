@@ -28,7 +28,7 @@ struct PickerSectionView<T: NSManagedObject>: View {
                         }
                         .disabled(vem.isEditing)
                     } else {
-                        Button("Choose \(selectedObjectEntityType.rawValue)") { vem.activeEditMode() }
+                        Text("No \(selectedObjectEntityType.rawValue.lowercased()) selected")
                     }
                 } else {
                     ToOnePickerParentView(objectSelection: $selectedObject, entityType: selectedObjectEntityType, context: vem.context)

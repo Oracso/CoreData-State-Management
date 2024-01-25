@@ -38,7 +38,6 @@ struct ToOnePickerView: View {
             Text(entityTypeTitle)
         }
         
-        
     }
 }
 

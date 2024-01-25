@@ -15,19 +15,3 @@ protocol ToManyEntity {
     func addToManyArray<T: NSManagedObject & RelationalEntity>(_ itemToAdd: T, _ relationship: ToManyEnum)
     
 }
-
-
-// protocol ToManyEntity {
-//     func addToManyArray<T: NSManagedObject, U: NSManagedObject>(_ item: T, _ u: U.Type)
-// }
-
-
-// // Category -> [Item]
-// extension Category: ToManyEntity {
-//     func addToManyArray<T, U>(_ item: T, _ u: U.Type) where T : NSManagedObject, U : NSManagedObject {
-//         self.addToItems(item as! Item)
-//     }
-    
-// }
-
-

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct OptionalFunc {
     
     init(_ call: Func? = nil) {
@@ -22,8 +21,6 @@ struct OptionalFunc {
     typealias Func = () -> Void
     
     var call: Func
-    
-    
     
 }
 

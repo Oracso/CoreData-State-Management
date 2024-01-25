@@ -89,27 +89,20 @@ struct OneToManyListView: View {
         }
         
         
-        
-        
     }
 }
 
 
-//#Preview {
-//    
-//    let parentObject = CoreDataPreviewManager.fetchPreviewObject(.<#EntityType#>).castedAs<#Entity#>()
-//    let allRelationshipObjects = CoreDataPreviewManager.fetchAllPreviewObjects(.<#EntityType#>)
-//    let allPlaceholderDetails = ObjectPlaceholderDetailsManager().createAllEntityObjectPlaceholderDetails(allRelationshipObjects, .<#EntityType#>)
-//    
-//    let vem = ViewEditingManager(CoreDataManager.preview.container.viewContext)
-//    vem.editMode = .active
-//    
-//    let previewView = NavigationStack {
-//        ToManyListParentView(parentCustomUUID: parentObject.customUUID, selectedObjects: .createBinding(parentObject.<#property#>), selectedObjectsEntityType: .<#EntityType#>, toManyFilterType: .oneToMany)
-//    }
-//        .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
-//        .environmentObject(vem)
-//    
-//    return previewView
-//}
+#Preview {
+    let parentObject = CoreDataPreviewManager.fetchPreviewObject(.category).castedAsCategory()
+    let vem = ViewEditingManager(CoreDataManager.preview.container.viewContext)
+    vem.editMode = .active
+    let previewView = NavigationStack {
+        ToManyListParentView(parentCustomUUID: parentObject.customUUID, selectedObjects: .createBinding(parentObject.items), selectedObjectsEntityType: .item, toManyFilterType: .oneToMany, inverseRelationshipName: parentObject.inverseRelationshipName(.items))
+    }
+        .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
+        .environmentObject(vem)
+    
+    return previewView
+}
 

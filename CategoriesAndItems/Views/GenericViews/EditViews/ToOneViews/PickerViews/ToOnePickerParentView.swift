@@ -13,7 +13,7 @@ struct ToOnePickerParentView<T: NSManagedObject>: View {
     @Binding var objectSelection: T?
     
     let entityType: EntityType
-
+    
     let context: NSManagedObjectContext
     
     var fetcher: CoreDataFetcher { CoreDataFetcher(context) }
@@ -43,7 +43,6 @@ struct ToOnePickerParentView<T: NSManagedObject>: View {
     }
     
     
-    
     var body: some View {
         
         
@@ -65,7 +64,7 @@ struct ToOnePickerParentView<T: NSManagedObject>: View {
         ToOnePickerParentView(
             objectSelection: Binding.createBinding(
                 CoreDataPreviewManager.fetchPreviewObject(.item).castedAsItem().category
-            ), 
+            ),
             entityType: .category,
             context: CoreDataManager.preview.container.viewContext
         )

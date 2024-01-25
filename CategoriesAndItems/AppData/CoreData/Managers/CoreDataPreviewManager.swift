@@ -37,9 +37,10 @@ struct CoreDataPreviewManager {
         
         // Add entity relationships
 
-        // linkOneToManyEntities(Category.self, Item.self, .items)
-
-        // linkOneToManyEntitiesGeneric(.category, .item, Category.self, Item.self)
+        linkOneToManyEntities(Category.self, Item.self, .items)
+        linkOneToManyEntities(Category.self, Item.self, .itemTags)
+        
+        linkOneToManyEntities(Item.self, Category.self, .categoryTags)
         
         context.saveIfChanges()
     }
@@ -70,9 +71,9 @@ struct CoreDataPreviewManager {
         
         switch entityType {
         case .category:
-            return modifier.createCategory() as! T
+            return modifier.createCategory(name: ran.name, date: ran.indexedDate, details: nil, value: ran.int64) as! T
         case .item:
-            return modifier.createItem() as! T
+            return modifier.createItem(name: ran.name, date: ran.indexedDate, details: nil, value: ran.int64) as! T
         }
         
     }
@@ -100,8 +101,6 @@ struct CoreDataPreviewManager {
         
         var onesCount: Int { allOnes.count }
         var manysCount: Int { allManys.count }
-        
-        // TODO: some kind of if ~ else statment to check that the counts are greater than 0, as otherwise the index call below will crash if returns 0 and array is empty
         
         for manyItem in allManys {
             var oneIndex: Int {
@@ -151,9 +150,7 @@ struct CoreDataPreviewManager {
     // MARK: - Fetch Object With Binding
     
     static func fetchObjectWithBinding<T: NSManagedObject>(_ entityType: EntityType) -> Binding<T> {
-        
         var object: T
-        
         switch entityType {
         case .category:
             object = fetchPreviewObject(.category)
@@ -179,14 +176,10 @@ struct CoreDataPreviewManager {
     
     // MARK: - ObjectPlaceholder Examples
     
-    
-    
     static func allEntityObjectPlaceholderExamples(_ entityType: EntityType) -> [ObjectPlaceholderDetails] {
         let objects = self.fetchAllPreviewObjects(entityType)
         return ObjectPlaceholderDetailsManager().createAllEntityObjectPlaceholderDetails(objects)
     }
-
-
 
 
     

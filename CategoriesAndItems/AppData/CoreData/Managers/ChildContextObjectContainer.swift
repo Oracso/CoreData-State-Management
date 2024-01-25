@@ -23,8 +23,6 @@ class ChildContextObjectContainer: ObservableObject, Identifiable {
         
     }
     
-    
-// TODO: Seems like I need different parameters to have the second init
     init(_ childContext: NSManagedObjectContext, _ entityType: EntityType, _ fix: Bool? = nil) {
         
         self.childContext = childContext

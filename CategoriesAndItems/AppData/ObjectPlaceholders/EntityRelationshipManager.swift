@@ -9,7 +9,6 @@ import Foundation
 
 struct EntityRelationshipManager {
     
-    
     func createRelationshipUUIDs<T: NSManagedObject & RelationalEntity>(_ object: T) -> (toOne: ToOneRelationships, toMany: ToManyRelationships) {
         
         var toOneDictionary: ToOneRelationships = [:]

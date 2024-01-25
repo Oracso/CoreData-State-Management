@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 class CategoryObjectStore: NSObject, ObservableObject {
     
     @Published var categories: [Category] = []

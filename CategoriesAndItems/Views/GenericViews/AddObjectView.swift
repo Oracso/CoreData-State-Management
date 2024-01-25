@@ -24,7 +24,7 @@ struct AddObjectView: View {
             print("cVem context: \(cVEM.context)")
             return cVEM
         }())
-
+        
     }
     
     @EnvironmentObject var ads: AppDataStore
@@ -48,11 +48,11 @@ struct AddObjectView: View {
                 dismiss()
             } else {
                 childVEM.cantSave = true
-                print("cannot save object")
+                print("Cannot save object")
             }
         }
     }
-
+    
     func cancelFunc() {
         if childVEM.context.hasChanges {
             childVEM.cancelChanges.toggle()
@@ -72,11 +72,11 @@ struct AddObjectView: View {
         if let object = childVEM.object {
             gvm.addObjectView(object)
                 .environmentObject(childVEM)
-        
+            
                 .standardGenericEditViewModifiers(childVEM, saveButton, cancelButton, OptionalFunc(discardFunc))
-
+            
                 .unableToSaveObject(childVEM)
-
+            
         } else {
             Text("No object found")
         }
@@ -87,6 +87,6 @@ struct AddObjectView: View {
 #Preview {
     NavigationStack {
         AddObjectView(.category, CoreDataManager.preview.container.viewContext)
-        .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
+            .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
     }
 }

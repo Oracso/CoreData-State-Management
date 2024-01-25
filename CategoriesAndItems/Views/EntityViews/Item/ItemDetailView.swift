@@ -17,70 +17,53 @@ struct ItemDetailView: View {
     
     @EnvironmentObject var vem: ViewEditingManager
     
-    
-    // MARK: Delete Object
     @Environment(\.dismiss) private var dismiss
 
-
     var body: some View {
-        
         
         List {
             
             // MARK: Name
-            // if vem.editMode == .inactive {
-            //     Text(item.unwrappedName.capitalized)
-            // } else {
-            //     TextField("Name", text: $item.name.defaultValue(""))
-            // }
+             if vem.editMode == .inactive {
+                 Text(item.unwrappedName.capitalized)
+             } else {
+                 TextField("Name", text: $item.name.defaultValue(""))
+             }
 
             // MARK: Date
-            // if vem.editMode == .inactive {
-            //     Text(item.unwrappedDate.formatted(date: .abbreviated, time: .shortened))
-            // } else {
-            //     DatePicker("Date", selection: $item.date.defaultValue(.now), displayedComponents: [.date, .hourAndMinute])
-            // }
-
-
-            // MARK: Numeric
-            // if vem.editMode == .inactive {
-            //     Text(String(item.unwrapped<#property#>))
-            // } else {
-            //     NumberTextFieldView($item.<#property#>)
-            // }
-
+             if vem.editMode == .inactive {
+                 Text(item.unwrappedDate.formatted(date: .abbreviated, time: .shortened))
+             } else {
+                 DatePicker("Date", selection: $item.date.defaultValue(.now), displayedComponents: [.date, .hourAndMinute])
+             }
             
-            // MARK: Empty String
-            // if vem.editMode == .inactive {
-            //     Text(item.unwrapped<#property#>.capitalized)
-            // } else {
-            //     TextField("<#property#>", text: $item.<#property#>.defaultValue(""))
-            // }
 
-            // MARK: Notes
-            // TODO: Need to decide how I manage optional notes
-            // if vem.editMode == .inactive {
-            //     if let notes = item.notes {
-            //         Text(notes)
-            //     }
-            // } else {
-            //     TextField("Notes", text: $item.notes.defaultValue(""))
-            // }
+            // MARK: Details
+             if vem.editMode == .inactive {
+                 if let details = item.details {
+                     Text(details)
+                 }
+             } else {
+                 TextField("Details", text: $item.details.defaultValue(""))
+             }
 
 
             // MARK: To-One Picker
-            // PickerSectionView(sectionTitle: "<#property#>", selectedObject: $item.<#property#>, selectedObjectEntityType: .<#property#>)
+             PickerSectionView(sectionTitle: "Category", selectedObject: $item.category, selectedObjectEntityType: .category)
 
 
             // MARK: To-Many List
-            // ForEachSectionView(
-            //     sectionTitle: "<#property#>",
-            //     parentObject: item,
-            //     selectedObjects: $item.<#property#>,
-            //     selectedObjectsEntityType: .<#property#>,
-            //     toManyFilterType: .<#type#>,
-            //     relationshipName: .<#property#>
-            // )
+             ForEachSectionView(
+                 sectionTitle: "Category Tags",
+                 parentObject: item,
+                 selectedObjects: $item.categoryTags,
+                 selectedObjectsEntityType: .category,
+                 toManyFilterType: .manyToMany,
+                 relationshipName: .categoryTags
+             )
+            
+            // MARK: To-One Picker
+             PickerSectionView(sectionTitle: "Main Category", selectedObject: $item.mainCategory, selectedObjectEntityType: .category)
             
 
               // MARK: Delete Object 
@@ -91,9 +74,6 @@ struct ItemDetailView: View {
 
             
         }
-        
-        .navigationTitle(item.unwrapped<#property#>.capitalized)
-
         
 
     }

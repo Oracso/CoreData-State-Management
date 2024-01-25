@@ -78,26 +78,6 @@ public extension UIApplication {
 
 
 
-
-// TODO: How to add this and make it work?
-//UINavigationController NavigationStack
-//extension NavigationStack {
-//    public func settingsToolbar(_ self: Self) -> some View {
-//        self.toolbar {
-//            
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                NavigationLink {
-//                    SettingsView()
-//                } label: {
-//                    Image(systemName: "person.circle")
-//                }
-//            }
-//            
-//        }
-//    }
-//}
-
-
 extension String {
     func insertSpacesBeforeUppercaseLetters() -> String {
         let pattern = "(?<=\\p{Ll})(?=\\p{Lu})"

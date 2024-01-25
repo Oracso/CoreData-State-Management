@@ -18,23 +18,17 @@ struct CoreDataManager {
     
     let modelName = "CategoriesAndItemsModel"
     
-    
     // MARK: - NSPersistentContainer property
     
     let container: NSPersistentContainerSubClass
     
     // MARK: - NSPersistentContainer init()
     
-    // An initialiser to load Core Data, either using an in-memory store
-    // for temporary storage or normal disk data storage
-    // true = uses ephemeral stores
-    
     private init(inMemory: Bool = true) {
         container = NSPersistentContainerSubClass(name: modelName)
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -54,7 +48,6 @@ struct CoreDataManager {
             }
         })
 
-        // container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
         container.viewContext.automaticallyMergesChangesFromParent = true
         
         print("Persistent Container has been created \(inMemory ? "(EPHEMERAL STORES)" : "(PERMANENT STORES)")")
@@ -73,7 +66,6 @@ struct CoreDataManager {
         _ = CoreDataPreviewManager(viewContext)
         
         // MARK: SAVE examples
-        // TODO: I don't think it even needs to be saved..?
 //        viewContext.saveIfChanges()
         
         return result

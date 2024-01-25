@@ -8,10 +8,7 @@
 import Foundation
 import CoreData
 
-
 struct JSONManager {
-    
-    
     
     func writeEntityObjectsToURL<T: Encodable>(_ objects: [T]) -> URL {
         
@@ -28,7 +25,6 @@ struct JSONManager {
     }
     
     
-    
     private func writeJSONStringToURL(_ jsonString: String, _ fileURL: URL) {
         do {
             try jsonString.write(to: fileURL, atomically: true, encoding: .utf8)
@@ -36,8 +32,6 @@ struct JSONManager {
             print("Could not write jsonString to URL")
         }
     }
-    
-    
     
     
     // MARK: - Document Directory
@@ -51,12 +45,9 @@ struct JSONManager {
         return paths[0]
     }
     
-    
-    
     private func returnURLFromFileName(_ fileName: String,_ fileType: String) -> URL? {
         return Bundle.main.url(forResource: fileName, withExtension: fileType)
     }
-    
     
     
     private func convertObjectsToJSONString<T: Encodable>(_ objects: [T]) -> String {
@@ -68,7 +59,6 @@ struct JSONManager {
             return ""
         }
     }
-    
     
     
     // MARK: - Load objects from URL

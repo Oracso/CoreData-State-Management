@@ -19,9 +19,6 @@ struct AllXView: View {
     
     let gvm = GenericViewManager()
     
-    
-    // MARK: - Delete Object From List
-    
     @EnvironmentObject var vem: ViewEditingManager
     
     @EnvironmentObject var ads: AppDataStore
@@ -31,33 +28,22 @@ struct AllXView: View {
     let entityType: EntityType
     
     var body: some View {
-
-
+        
         NavigationStack {
-            
             List {
-                
                 ForEach(objects) { object in
-                   
                     NavigationLink {
                         XDetailView(object, true)
-                        
                     } label: {
                         GenericViewManager.objectListRowView(object)
                     }
-                    
-                    
                 }
-                
-                
             }
-            
             
             .navigationTitle(GenericViewManager.navTitle(entityType))
             
-            
             .toolbar {
-
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
                         AddObjectView(entityType, ads.context)
@@ -88,8 +74,6 @@ struct AllXView: View {
             
             
         }
-        
-
         
         
     }

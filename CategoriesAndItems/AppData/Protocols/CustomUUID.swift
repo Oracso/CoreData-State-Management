@@ -8,11 +8,9 @@
 import Foundation
 import CoreData
 
-
 protocol CustomUUID: Identifiable  {
     var customUUID: String { get }
 }
-
 
 struct CustomUUIDManager {
     static func separateCustomUUID(_ customUUID: String) -> (uuid: String, entityType: EntityType) {
@@ -36,21 +34,17 @@ extension CustomUUID {
 }
 
 
-// TODO: Is this needed?
 extension CustomUUID {
     func emptyCustomUUID() -> String {
         ""
     }
 }
 
-
-
 extension String {
     func separateCustomUUID() -> (uuid: String, entityType: EntityType) {
         return CustomUUIDManager.separateCustomUUID(self)
     }
 }
-
 
 extension NSManagedObject: CustomUUID {
     var customUUID: String {

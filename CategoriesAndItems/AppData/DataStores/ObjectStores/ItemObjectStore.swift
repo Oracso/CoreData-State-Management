@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 class ItemObjectStore: NSObject, ObservableObject {
     
     @Published var items: [Item] = []

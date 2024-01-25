@@ -34,16 +34,13 @@ struct ToManyListParentView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    
     let parentCustomUUID: String
     
     @Binding var selectedObjects: NSSet?
     
     let selectedObjectsEntityType: EntityType
     
-    // TODO: Have this kind of data as an extension in EntityExtensions ??
     let toManyFilterType: ToManyFilterType
-    
     
     @StateObject var placeholderDetailsContainer: ObjectPlaceholderDetailsContainer
     
@@ -69,7 +66,6 @@ struct ToManyListParentView: View {
     
     @State private var nilObjects = false
     
-    
     func setObjectNSSet() {
         switch toManyFilterType {
         case .oneToMany:
@@ -78,7 +74,6 @@ struct ToManyListParentView: View {
             saveManyToMany()
         }
     }
-    
     
     func saveOneToMany() {
         let customUUIDs = placeholderDetailsContainer.selectedPlaceholderDetails.returnCustomUUIDsFromObjectPlaceholders()
@@ -96,7 +91,6 @@ struct ToManyListParentView: View {
     var saveButton: CustomButton { CustomButton("Confirm", OptionalFunc(saveFunc)) }
     var cancelButton: CustomButton { CustomButton(.cancel, OptionalFunc(cancelFunc)) }
     
-    
     func saveFunc() {
         setObjectNSSet()
         ads.refresh()
@@ -104,7 +98,6 @@ struct ToManyListParentView: View {
     }
     
     func cancelFunc() {
-        // TODO: This doesn't let me use the DiscardChanges Alert inside an EditXObjectDetail View
         dismiss()
     }
     
@@ -112,7 +105,6 @@ struct ToManyListParentView: View {
     var body: some View {
         
         List {
-            
             switch toManyFilterType {
             case .oneToMany:
                 OneToManyListView(placeholderDetailsContainer: placeholderDetailsContainer)
@@ -122,11 +114,6 @@ struct ToManyListParentView: View {
             
         }
         
-        
-        
-        
-        
-        // TODO: Issue with saving the ToManyListParentView, as it is trying to save objects from ADS (the main context), to a the new object in the child Context
         .standardGenericEditViewModifiers(vem, saveButton, cancelButton)
         
         .navigationTitle("Add \(selectedObjectsEntityType.pluralRawValue())")
@@ -135,11 +122,9 @@ struct ToManyListParentView: View {
             setUpView()
         }
         
-        
         .onChange(of: vem.editMode) {
             dismiss()
         }
-        
         
         .overlay {
             if nilObjects {
@@ -153,18 +138,14 @@ struct ToManyListParentView: View {
         }
         
         
-        
     }
 }
 
 
 #Preview {
-    
     let parentObject = CoreDataPreviewManager.fetchPreviewObject(.category).castedAsCategory()
-    
     let vem = ViewEditingManager(CoreDataManager.preview.container.viewContext)
     vem.editMode = .active
-    
     let previewView = NavigationStack {
         ToManyListParentView(
             object: parentObject,
@@ -173,10 +154,8 @@ struct ToManyListParentView: View {
             relationshipName: .items
         )
     }
-    
         .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
         .environmentObject(vem)
-    
     
     return previewView
     

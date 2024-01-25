@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 class AppObjectStores: ObservableObject {
     
     let context: NSManagedObjectContext
@@ -21,7 +20,6 @@ class AppObjectStores: ObservableObject {
         self.categoryOS = CategoryObjectStore(context)
         self.itemOS = ItemObjectStore(context)
     }
-    
     
 }
 
@@ -64,48 +62,3 @@ extension AppObjectStores {
     }
     
 }
-
-
-
-
-// MARK: - MappableEntity Functionality
-
-// extension AppObjectStores {
-    
-//     func allMappableEntities() -> [MappableEntity] {
-        
-//         var array: [MappableEntity] = []
-        
-//         for entityType in EntityType.allCases {
-            
-//             var objects: [NSManagedObject] = []
-            
-//             switch entityType {
-//             case .item:
-//                 if Item.self is MappableEntity.Type {
-//                     objects += allObjects(.item)
-//                 }
-//             case .category:
-//                 if Category.self is MappableEntity.Type {
-//                     objects += allObjects(.category)
-//                 }
-//             case .location:
-//                 if Location.self is MappableEntity.Type {
-//                     objects += allObjects(.location)
-//                     print(objects.count)
-//                 }
-//             case .place:
-//                 if Place.self is MappableEntity.Type {
-//                     objects += allObjects(.place)
-//                 }
-//             }
-            
-//             array += objects as? [MappableEntity] ?? []
-//         }
-        
-//         return array
-//     }
-// 
-// }
-
-

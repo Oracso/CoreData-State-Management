@@ -8,10 +8,7 @@
 import Foundation
 import CoreData
 
-
-
 class DataDownloadManager: ObservableObject {
-    
     
     let context: NSManagedObjectContext
     
@@ -21,11 +18,9 @@ class DataDownloadManager: ObservableObject {
     }
 
     
-    
     let jsonManager = JSONManager()
     
     @Published var finalURLs: [URL] = []
-    
     
     
     func writeObjectsAndAddURLToArray<T: Encodable>(_ objects: [T]) {
@@ -37,17 +32,12 @@ class DataDownloadManager: ObservableObject {
     let fetcher: CoreDataFetcher
     
     
-    
 }
 
 
-
-
 class EntitySelectionTracker: ObservableObject {
-   
     
     @Published var entities: [EntitySelection] = []
-    
     
     func createSelections() {
        var array: [EntitySelection] = []
@@ -56,8 +46,6 @@ class EntitySelectionTracker: ObservableObject {
        }
         self.entities = array
    }
-    
-  
     
     struct EntitySelection: Identifiable {
         let entity: EntityType

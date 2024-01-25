@@ -60,8 +60,6 @@ extension NSManagedObject {
             print("")
         case .objectStore:
             print("")
-            // TODO: Can't use NSSortDescriptor here as don't know what the key would be
-    //            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         }
         
         return request

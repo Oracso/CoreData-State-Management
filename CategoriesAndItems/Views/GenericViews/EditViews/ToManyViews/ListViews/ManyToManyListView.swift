@@ -14,11 +14,9 @@ struct ManyToManyListView: View {
     
     @State private var updateContainer = false
     
-    
     var body: some View {
         
-        
-        ForEach(placeholderDetailsContainer.allObjectPlaceholderDetailsToggles) { toggledObjectDetails in
+        ForEach(placeholderDetailsContainer.allObjectPlaceholderDetailsToggles.sorted(by: { $0.placeholderDetails.objectName < $1.placeholderDetails.objectName})) { toggledObjectDetails in
             
             Button {
                 toggledObjectDetails.toggle.toggle()
@@ -29,29 +27,20 @@ struct ManyToManyListView: View {
                     .tint(toggledObjectDetails.toggle ? .green : . red)
                 
             }
-                        
-            
         }
         
         .id(updateContainer)
-        
-        
         
         
     }
 }
 
 #Preview {
-    
     let parentObject = CoreDataPreviewManager.fetchPreviewObject(.category).castedAsCategory()
-    // let allRelationshipObjects = CoreDataPreviewManager.fetchAllPreviewObjects(.item)
-    // let allPlaceholderDetails = ObjectPlaceholderDetailsManager().createAllEntityObjectPlaceholderDetails(allRelationshipObjects)
-    
     let vem = ViewEditingManager(CoreDataManager.preview.container.viewContext)
     vem.editMode = .active
-    
     let previewView = NavigationStack {
-        ToManyListParentView(parentCustomUUID: parentObject.customUUID, selectedObjects: .createBinding(parentObject.items), selectedObjectsEntityType: .item, toManyFilterType: .manyToMany, inverseRelationshipName: parentObject.inverseRelationshipName(.items))
+        ToManyListParentView(parentCustomUUID: parentObject.customUUID, selectedObjects: .createBinding(parentObject.itemTags), selectedObjectsEntityType: .item, toManyFilterType: .manyToMany, inverseRelationshipName: parentObject.inverseRelationshipName(.itemTags))
     }
         .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
         .environmentObject(vem)
