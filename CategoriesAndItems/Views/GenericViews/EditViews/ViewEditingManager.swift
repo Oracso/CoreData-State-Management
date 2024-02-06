@@ -24,7 +24,8 @@ class ViewEditingManager: ObservableObject {
     @Published var cancelChanges = false
     
     func discardChanges() {
-        context.undo()
+        context.rollback()
+//        context.undo()
         inactiveEditMode()
     }
     
