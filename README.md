@@ -44,29 +44,13 @@ An example SwiftUI project using CoreData to manage dynamic object data over tim
 # Screenshots
 
 
-<p align="center">
-<img src="PreviewAssets/ScreenRecording1.gif" width="230" title="App Example">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="PreviewAssets/Screenshot2.png" width="230"  title="Category Detail View">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="PreviewAssets/Screenshot3.png" width="230"  title="Editing Category">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  
-</p>
-<br></br>
-
 <section align="center">
-  <img src="PreviewAssets/Screenshot1.png" width="200" title="PreviewAssets/App Example">
+<img src="PreviewAssets/Screenshot1.png" width="200" title="All Categories View">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="PreviewAssets/Screenshot2.png" width="175"  title="Category Detail View">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="PreviewAssets/Screenshot3.png" width="150"  title="Editing Category">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="PreviewAssets/Screenshot1.png" width="175"  title="Game Log Details">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="PreviewAssets/Screenshot1.png" width="150"  title="Statistics View">
-</section>
-<br>
-
-<section align="center">
-  <img src="PreviewAssets/Screenshot1.png" width="150" title="PreviewAssets/App Example">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="PreviewAssets/Screenshot1.png" width="175"  title="Game Log Details">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="PreviewAssets/Screenshot1.png" width="200"  title="Statistics View">
 </section>
 <br>
 
