@@ -10,10 +10,20 @@
 </section>
 
 ### Overview:
-An example SwiftUI project using CoreData to manage dynamic object data over time.
+An example **SwiftUI** project using **CoreData** to manage dynamic object data over time.
 
 
 ### Use Case:
+
+This project serves as an exemplary demonstration of the extensive versatility and wide-ranging applicability of my **CoreData** infrastructure framework.
+
+Consisting of mainly generic code, designed to be reusable across numerous contexts, it requires minimal modification or changes before being a fully operational and adaptable solution for managing object data over time.
+
+Its robust architecture and modular design ensure scalability and seamless integration, keeping it suitable for a myriad of applications across various domains and making it an invaluable asset for any development team.
+
+My optimized code streamlines and refines **CoreData** implementation, reducing the need for extensive customisation thus allowing developers to concentrate on the core functionality on their projects.
+
+
 
 <details open>
     <summary>Contents:</summary>
