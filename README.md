@@ -21,7 +21,7 @@ Consisting of mainly generic code, designed to be reusable across numerous conte
 
 Its robust architecture and modular design ensure scalability and seamless integration, keeping it suitable for a myriad of applications across various domains and making it an invaluable asset for any development team.
 
-My optimized code streamlines and refines **CoreData** implementation, reducing the need for extensive customisation thus allowing developers to concentrate on the core functionality on their projects.
+My optimized code streamlines and refines **CoreData** implementation, reducing the need for extensive customisation and thus allowing developers to concentrate on the core functionality on their projects.
 
 
 
@@ -43,11 +43,48 @@ My optimized code streamlines and refines **CoreData** implementation, reducing 
 ## Future Plans:
 
 
+#### - <ins>Code Modularisation</ins>
+
+I would like to export this code into custom Xcode file templates. This will make managing the project much easier and allow for the easy importing of relevant sections. Currently it can be quite difficult to import the whole structure and can be time consuming to work through and delete the sections that aren't needed.
+
+#### - <ins>Complete Code Tidy Up</ins>
+
+The code is comprehensive and well written, however after some time away it would be useful to re-look at it and determine whether each element is needed or whether it can be combined or reduced. This will make managing the project significantly easier.
+
 
 ## Current Difficulties:
 
 
+#### - <ins>Project Size</ins>
+
+Currently there is a significant amount of code carrying out a range of functionality throughout the application. Some elements have been written upon the realisation of a new context or app requirement, meaning that although they are integrated within the overall framework, they can sometimes seem like more of an add-on than part of a concise unit. As the project as developed certain elements have often been rewritten to accommodate to the new use case, this has left some parts feeling less succinct than they would ideally be. Rethinking overall concepts would help to streamline code, removing unnecessary duplications and tidying up large sections that were written successively but could instead be written as a complete unified whole.
+
 ## Past Problems:
+
+
+
+#### - <ins>Entity Cardinality</ins>
+
+Managing one-to-many and many-to-many object relationships caused extreme difficulty in a number of contexts.
+
+
+#### - <ins>Dynamic Object Generation</ins>
+
+This project is capable of generating a specified number of example objects of any entity type and creating various cardinal relationships between them.
+
+
+#### - <ins>Generic Object Relationship Linking</ins>
+
+
+
+#### - <ins>SwiftUI Previewing</ins>
+
+**CoreDataPreviewManager** is a highly capable solution to previewing **SwiftUI** code that uses CoreData as its data structure. Using clear declarative syntax, **CoreDataPreviewManager** uses static fetch requests combined with a preview **NSPersistentContainer** to dynamically generate **CoreData** objects that are capable of being altered over time throughout view hierarchies.
+
+
+#### - <ins>Protocol Conformance</ins>
+
+This project uses several *protocols* to leverage the capability of *generic* code throughout the application. 
 
 
 
