@@ -87,6 +87,19 @@ This project is capable of generating a specified number of example objects of a
 This project uses several *protocols* to leverage the capability of *generic* code throughout the application. 
 
 
+#### - <ins>Entity Codable Conformance & JSON Parsing</ins>
+
+Having **CoreData** objects that can easily and simply be parsed to *JSON* ensures data can be shared across a range of applications. Through simple and uniform customisation, any *Entity* can now conform to the **Codable** protocol. An intuitive UI has also been included to allow users access to data generated over an app's life. Although primarily for developers during testing phases, this also grants full control to users of their data, giving it to them in an universal format and enabling them to take it wherever they wish.
+
+
+#### - <ins>NSManagedObjectContext Child Contexts</ins>
+
+#### - <ins>Generic One-to-Many & Many-to-Many View Sections</ins>
+
+#### - <ins>Generic Add Object Views</ins>
+
+#### - <ins>Generic All Objects & Object Detail Views</ins>
+
 
 # Screenshots
 
