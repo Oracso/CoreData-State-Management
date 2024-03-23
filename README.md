@@ -21,7 +21,7 @@ Consisting of mainly generic code, designed to be reusable across numerous conte
 
 Its robust architecture and modular design ensure scalability and seamless integration, keeping it suitable for a myriad of applications across various domains and making it an invaluable asset for any development team.
 
-My optimized code streamlines and refines **CoreData** implementation, reducing the need for extensive customisation and thus allowing developers to concentrate on the core functionality on their projects.
+My optimised code streamlines and refines **CoreData** implementation, reducing the need for extensive customisation and thus allowing developers to concentrate on the core functionality of their projects.
 
 
 
