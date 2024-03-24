@@ -1,4 +1,4 @@
-# CoreData-State-Management
+# CoreData State Management Framework
 
 
 <section align="center">
@@ -10,18 +10,18 @@
 </section>
 
 ### Overview:
-An example **SwiftUI** project using **CoreData** to manage dynamic object data over time.
+An example **SwiftUI** project showcasing a <ins>*custom framework*</ins> implementing **CoreData** to manage dynamic object data over time.
 
 
 ### Use Case:
 
-This project serves as an exemplary demonstration of the extensive versatility and wide-ranging applicability of my **CoreData** infrastructure framework.
+This project serves as a clear demonstration of the extensive versatility and wide-ranging applicability of my **CoreData** infrastructure framework.
 
-Consisting of mainly generic code, designed to be reusable across numerous contexts, it requires minimal modification or changes before being a fully operational and adaptable solution for managing object data over time.
+Consisting of mainly generic code, designed to be reusable across numerous contexts, it requires minimal modification or changes before being a fully operational and adaptable solution for managing object state within applications.
 
 Its robust architecture and modular design ensure scalability and seamless integration, keeping it suitable for a myriad of applications across various domains and making it an invaluable asset for any development team.
 
-My optimised code streamlines and refines **CoreData** implementation, reducing the need for extensive customisation and thus allowing developers to concentrate on the core functionality of their projects.
+This optimised code streamlines and refines **CoreData** implementation, reducing the need for extensive customisation and thus allowing developers to concentrate on the core functionality of their projects.
 
 
 
@@ -41,6 +41,11 @@ My optimised code streamlines and refines **CoreData** implementation, reducing 
 
 
 ## Future Plans:
+
+
+#### - <ins>Develop into Framework</ins>
+
+Code is not setup as an actual *Framework* and so implementation isn't as streamlined as it could be. Lots of code that doesn't need to be seen is accessible and is taking up project namespace. Would be good to formulate code into something that is easier to implement with simple class inheritance etc. 
 
 
 #### - <ins>Code Modularisation</ins>
